@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="./ascii.svg" width="460" alt="ASCII portrait generated from Chin Wee's GitHub profile picture"/>
+
 <img src="./hero.svg" width="620" alt="Chin Wee — software architect and game systems developer"/>
 
 [github](https://github.com/Chin-Wee) &nbsp;·&nbsp;
@@ -51,9 +53,9 @@ editorial layouts, physics, reduced-motion support, and a GitHub Pages export.
 <img src="./hd-about-this-page.svg" width="620" alt="about this page"/>
 
 Every graphic is committed to this repository and generated without an external
-profile-stat service. `scripts/generate_stats.py` reads public GitHub activity,
-draws the SVGs with the Python standard library, and a scheduled workflow refreshes
-them daily.
+profile-stat service. `scripts/make_portrait.py` converts the current GitHub avatar
+into the animated ASCII portrait, while `scripts/generate_stats.py` reads public
+GitHub activity and draws the remaining SVGs. A scheduled workflow refreshes them daily.
 
 The SVGs use a system monospace stack, adapt to GitHub light and dark themes, and
 animate with SMIL because scripts are stripped from README content. The visual
