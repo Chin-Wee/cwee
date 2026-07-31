@@ -10,6 +10,7 @@ on:
     paths:
       - README.md
       - scripts/generate_stats.py
+      - scripts/make_portrait.py
       - .github/workflows/profile-stats.yml
 
 permissions:
@@ -28,7 +29,16 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v4
 
-      - name: Generate profile graphics
+      - name: Install portrait dependency
+        run: python3 -m pip install --disable-pip-version-check pillow
+
+      - name: Generate ASCII portrait
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_LOGIN: ${{ github.repository_owner }}
+        run: python3 scripts/make_portrait.py
+
+      - name: Generate activity graphics
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_LOGIN: ${{ github.repository_owner }}
@@ -36,7 +46,7 @@ jobs:
 
       - name: Commit changed graphics
         run: |
-          FILES="stats.svg streak.svg langs.svg year.svg hd-*.svg"
+          FILES="ascii.svg stats.svg streak.svg langs.svg year.svg hd-*.svg"
           if [ -z "$(git status --porcelain -- $FILES)" ]; then
             echo "No profile graphic changes."
             exit 0
